@@ -34,12 +34,14 @@ message DispatchTaskRequest {
         repeated coprocessor.RegionInfo regions = 4; 
 	// If this task contains table scan, we still need their region info.
 	int64 schema_ver = 5;
+	repeated DispatchTaskRequest other_reqs = 6;
 }
 
 // Get response of DispatchTaskRequest.
 message DispatchTaskResponse {
 	Error error = 1;
 	repeated metapb.Region retry_regions = 2;
+	repeated DispatchTaskResponse other_resps = 3;
 }
 
 // CancelTaskRequest closes the execution of a task.
